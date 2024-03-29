@@ -1,8 +1,8 @@
 package data;
 
 public class Tarea {
-    private int tareaId;
-    private String empleadoId = "";
+    private int tareaId = 0;
+    private int empleadoId = 0;
     private String descripcion = "";
     private String fecha = "";
     private String nombre = "";
@@ -19,11 +19,11 @@ public class Tarea {
         this.tareaId = tareaId;
     }
 
-    public String getEmpleadoId() {
+    public int getEmpleadoId() {
         return empleadoId;
     }
 
-    public void setEmpleadoId(String empleadoId) {
+    public void setEmpleadoId(int empleadoId) {
         this.empleadoId = empleadoId;
     }
 
