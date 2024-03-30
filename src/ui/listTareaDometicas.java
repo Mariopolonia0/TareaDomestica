@@ -1,3 +1,4 @@
+
 package ui;
 
 
@@ -50,6 +51,9 @@ public class listTareaDometicas extends JFrame {
                     tarea.setTareaId(tarea.getTareaId());
                     tarea.setNombre(tarea.getNombre());
                     tarea.setEstado(tarea.getEstado());
+                    tarea.setDescripcion(tarea.getDescripcion());
+                    tarea.setFecha(tarea.getFecha());
+                    tarea.setEmpleadoId(tarea.getEmpleadoId());
                     model.addElement(tarea);
                 }
 

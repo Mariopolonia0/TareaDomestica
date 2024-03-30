@@ -36,4 +36,13 @@ public class TareaRetrofit {
 
         return citas;
     }
+    public boolean enviarTarea(Tarea tarea) {
+        boolean listo = false;
+        try {
+            listo = SERVICE.enviarTarea(tarea).execute().isSuccessful();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return listo;
+    }
 }

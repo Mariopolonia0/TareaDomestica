@@ -6,7 +6,7 @@ public class Tarea {
     private String descripcion = "";
     private String fecha = "";
     private String nombre = "";
-    private String estado = "";
+    private String estado = "por hacer";
 
     public Tarea() {
     }
