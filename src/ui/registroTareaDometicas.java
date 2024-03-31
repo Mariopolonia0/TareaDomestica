@@ -24,7 +24,7 @@ public class registroTareaDometicas extends JFrame {
 
     public registroTareaDometicas() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setTitle("Registro Tarea Domestica");
+        this.setTitle("Gestor de Tareas Domésticas");
         this.setLayout(null);
         this.setBounds(500, 200, 450, 450);
         this.setContentPane(panelPricipal());
@@ -37,6 +37,7 @@ public class registroTareaDometicas extends JFrame {
     private JPanel panelPricipal() {
         JPanel panel = new JPanel();
         panel.setLayout(null);
+        panel.setBackground(new Color(0xB2FD6A99, true));
 
         JLabel descripcion = texto("Descripcion:");
         descripcion.setBounds(25, 10, 100, 130);

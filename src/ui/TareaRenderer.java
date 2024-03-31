@@ -1,12 +1,9 @@
 package ui;
 
-
 import data.Tarea;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-
 
 public class TareaRenderer extends JPanel implements ListCellRenderer<Tarea> {
 
@@ -15,8 +12,6 @@ public class TareaRenderer extends JPanel implements ListCellRenderer<Tarea> {
     private JLabel lbDescripcion = new JLabel();
     private JLabel lbEstado = new JLabel();
     JPanel panelText = new JPanel(new GridLayout(0, 1));
-
-
 
     public TareaRenderer() {
         setLayout(new BorderLayout(0,0));
