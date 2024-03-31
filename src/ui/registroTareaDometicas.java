@@ -38,7 +38,6 @@ public class registroTareaDometicas extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
-
         JLabel descripcion = texto("Descripcion:");
         descripcion.setBounds(25, 10, 100, 130);
         panel.add(descripcion);
@@ -74,7 +73,6 @@ public class registroTareaDometicas extends JFrame {
         estadoComboBox.setBounds(130, 210, 100, 30);
         panel.add(estadoComboBox);
 
-
         ConfigurarButton();
         panel.add(agregarButton);
 
@@ -82,25 +80,6 @@ public class registroTareaDometicas extends JFrame {
         limpiarCampoButton.setBounds(25, 260, 100, 30);
         panel.add(limpiarCampoButton);
 
-
-/*
-        nombreTextField = textField();
-        panel.add(panel("Nombre ", 25, 60, nombreTextField, new BorderLayout()));
-
-        NombreAutorTextField = textField();
-        panel.add(panel("Nombre Autor ", 25, 110, NombreAutorTextField, new BorderLayout()));
-
-        EdiccionTextField = textField();
-        panel.add(panel("Ediccion ", 25, 160, EdiccionTextField, new BorderLayout()));
-
-        precioTextField = textField();
-        panel.add(panel("Precio ", 25, 210, precioTextField, new BorderLayout()));
-
-        panelButton();
-        panel.add(guardar);
-        panel.add(buscar);
-        panel.add(nuevo);
-        panel.add(eliminar);*/
         return panel;
     }
 

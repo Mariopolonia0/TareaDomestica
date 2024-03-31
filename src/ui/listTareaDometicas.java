@@ -15,16 +15,16 @@ import java.awt.event.MouseEvent;
 public class listTareaDometicas extends JFrame {
 
     private JButton agregar;
-    private JButton eliminar;
-
+    private JButton buscar;
     private JScrollPane scrollPane = new JScrollPane();
     private JList<Tarea> lista;
+    private JTextField buscarTextField;
 
     public listTareaDometicas() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Lista De Tarea Domesticas");
         this.setLayout(null);
-        this.setBounds(600, 200, 480, 500);
+        this.setBounds(600, 200, 540, 600);
         this.setContentPane(PanelPrincipal());
         this.setVisible(true);
     }
@@ -35,9 +35,10 @@ public class listTareaDometicas extends JFrame {
         ConfigurarButton();
         llenarLista();
         panel.setLayout(null);
+        panel.add(buscarTextField);
         panel.add(scrollPane);
         panel.add(agregar);
-        panel.add(eliminar);
+        panel.add(buscar);
         return panel;
     }
 
@@ -60,7 +61,7 @@ public class listTareaDometicas extends JFrame {
         );
 
         lista = new JList(model);
-        scrollPane.setBounds(0, 0, 330, 450);
+        scrollPane.setBounds(10, 50, 500, 500);
         scrollPane.setBorder(new LineBorder(Color.CYAN, 5, true));
         lista.setCellRenderer(new TareaRenderer());
 
@@ -69,12 +70,25 @@ public class listTareaDometicas extends JFrame {
 
     }
 
-
     private void ConfigurarButton() {
+        ImageIcon icono = new ImageIcon("src/resources/buscarIcono.png");
+
+        buscarTextField = textField();
+        buscarTextField.setBounds(10, 10, 250, 30);
+        buscar = new JButton("");
+        buscar.setIcon(new ImageIcon(icono.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
+        buscar.setBounds(270, 10, 75, 30);
+        buscar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                //OpcionEliminar();
+            }
+        });
+
         agregar = new JButton("");
-        ImageIcon icono = new ImageIcon("src/resources/AgregarIcono.png");
+        icono = new ImageIcon("src/resources/AgregarIcono.png");
         agregar.setIcon(new ImageIcon(icono.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
-        agregar.setBounds(350, 10, 75, 30);
+        agregar.setBounds(360, 10, 75, 30);
         agregar.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
@@ -82,19 +96,17 @@ public class listTareaDometicas extends JFrame {
             }
         });
 
-        eliminar = new JButton("");
-        icono = new ImageIcon("src/resources/EliminarIcono.png");
-        eliminar.setIcon(new ImageIcon(icono.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
-        eliminar.setBounds(350, 50, 75, 30);
-        eliminar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent me) {
-                //OpcionEliminar();
-            }
-        });
+
     }
 
     private void OpcionAgregar() {
         new registroTareaDometicas();
+    }
+
+    private JTextField textField() {
+        JTextField jTextField = new JTextField();
+        jTextField.setForeground(Color.BLACK);
+        jTextField.setFont(new Font("arial", 1, 16));
+        return jTextField;
     }
 }

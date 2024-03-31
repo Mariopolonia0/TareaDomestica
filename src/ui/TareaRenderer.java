@@ -16,6 +16,8 @@ public class TareaRenderer extends JPanel implements ListCellRenderer<Tarea> {
     private JLabel lbEstado = new JLabel();
     JPanel panelText = new JPanel(new GridLayout(0, 1));
 
+
+
     public TareaRenderer() {
         setLayout(new BorderLayout(0,0));
         panelText.add(lbDescripcion);
