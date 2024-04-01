@@ -1,50 +1,77 @@
 package ui;
 
 import data.Tarea;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TareaRenderer extends JPanel implements ListCellRenderer<Tarea> {
 
-    private JLabel lbName = new JLabel();
-    private JLabel lbAuthor = new JLabel();
-    private JLabel lbDescripcion = new JLabel();
-    private JLabel lbEstado = new JLabel();
-    JPanel panelText = new JPanel(new GridLayout(0, 1));
+    private JLabel nameLabel = new JLabel();
+    private JLabel fechaLabel = new JLabel();
+    private JLabel descripcionLabel = new JLabel();
+    private JLabel estadoLabel = new JLabel();
+    JPanel panelMain = new JPanel(new BorderLayout(50, 50));
+    JPanel panelRigth = new JPanel(new GridLayout(2, 1));
+    JPanel panelLeft = new JPanel(new GridLayout(2, 1));
 
     public TareaRenderer() {
-        setLayout(new BorderLayout(0,0));
-        panelText.add(lbDescripcion);
-        panelText.add(lbAuthor);
-        panelText.add(lbName);
-        panelText.add(lbEstado);
-        //panelText.setBorder(new LineBorder(Color.CYAN, 5, true));
-        this.setBorder(new EmptyBorder(5, 5, 5, 5));
-        add(panelText, BorderLayout.CENTER);
+        //setBackground(Color.GREEN);
+        setBorder(new EmptyBorder(10, 10, 10, 10));
+        setLayout(new BorderLayout(5, 5));
+
+
+        panelMain.setBackground(Color.GREEN);
+        panelLeft.setBackground(Color.GREEN);
+        panelRigth.setBackground(Color.GREEN);
+
+        panelLeft.add(descripcionLabel);
+        panelLeft.add(nameLabel);
+
+        panelRigth.add(fechaLabel);
+        panelRigth.add(estadoLabel);
+
+        panelMain.add(panelRigth, BorderLayout.EAST);
+        panelMain.add(panelLeft, BorderLayout.WEST);
+
+        add(panelMain);
+
     }
 
     @Override
     public Component getListCellRendererComponent(JList<? extends Tarea> list,
                                                   Tarea tarea, int index, boolean isSelected, boolean cellHasFocus) {
 
-        lbName.setText(tarea.getNombre());
-        lbName.setBorder(new EmptyBorder(5, 5, 0, 0));
+        nameLabel.setText(tarea.getNombre());
 
-        lbDescripcion.setText(tarea.getDescripcion());
-        lbDescripcion.setBorder(new EmptyBorder(6, 5, 0, 0));
+        nameLabel.setBorder(new EmptyBorder(5, 5, 0, 0));
 
-        lbEstado.setText(tarea.getEstado());
-        lbEstado.setBorder(new EmptyBorder(7, 5, 5, 0));
+        descripcionLabel.setText(tarea.getDescripcion());
+        descripcionLabel.setBorder(new EmptyBorder(5, 5, 0, 0));
+        descripcionLabel.setFont(new Font("arial", 1, 16));
 
-        lbAuthor.setBorder(new EmptyBorder(8, 5, 5, 0));
-        lbAuthor.setText(tarea.getFecha());
+        fechaLabel.setText(tarea.getFecha());
+        fechaLabel.setBorder(new EmptyBorder(5, 5, 0, 10));
 
-        if(cellHasFocus){
-            panelText.setBackground(Color.GREEN);
-        }else{
-            panelText.setBackground(Color.CYAN);
-        }
+        estadoLabel.setText(tarea.getEstado());
+        estadoLabel.setBorder(new EmptyBorder(5, 5, 0, 10));
+
+        panelRigth.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                editar(tarea);
+            }
+        });
+
+
         return this;
+    }
+
+    public void editar(Tarea tarea) {
+        registroTareaDometicas registroTareaDometicas = new registroTareaDometicas(tarea);
+
     }
 }

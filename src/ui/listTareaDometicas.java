@@ -26,7 +26,7 @@ public class listTareaDometicas extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Gestor de Tareas Domésticas");
         this.setLayout(null);
-        this.setBounds(600, 200, 540, 600);
+        this.setBounds(600, 200, 560, 650);
         this.setContentPane(PanelPrincipal());
         this.setVisible(true);
     }
@@ -69,8 +69,13 @@ public class listTareaDometicas extends JFrame {
         lista = new JList(model);
         scrollPane.setBounds(10, 100, 500, 500);
         scrollPane.setBackground(new Color(0xB2FD6A99, true));
-        //scrollPane.setBorder(new LineBorder(new Color(0xB2FD6A99, true), 5, true));
         lista.setCellRenderer(new TareaRenderer());
+        lista.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                new registroTareaDometicas(lista.getSelectedValue());
+            }
+        });
 
         scrollPane.setViewportView(lista);
 
@@ -81,11 +86,11 @@ public class listTareaDometicas extends JFrame {
         ImageIcon icono = new ImageIcon("src/resources/buscarIcono.png");
 
         buscarTextField = textField();
-        buscarTextField.setBounds(10, 50, 250, 30);
+        buscarTextField.setBounds(10, 50, 240, 30);
 
-        buscar = new JButton("");
+        buscar = new JButton("Nombre");
         buscar.setIcon(new ImageIcon(icono.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
-        buscar.setBounds(270, 50, 75, 30);
+        buscar.setBounds(260, 50, 120, 30);
         buscar.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
@@ -93,10 +98,10 @@ public class listTareaDometicas extends JFrame {
             }
         });
 
-        agregar = new JButton("");
+        agregar = new JButton("Agregar");
         icono = new ImageIcon("src/resources/AgregarIcono.png");
         agregar.setIcon(new ImageIcon(icono.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
-        agregar.setBounds(360, 50, 75, 30);
+        agregar.setBounds(390, 50, 120, 30);
         agregar.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {

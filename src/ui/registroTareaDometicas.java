@@ -20,9 +20,22 @@ public class registroTareaDometicas extends JFrame {
     private JTextField descripcionTextField;
     private JTextField fechaTextField;
     private JTextField nombreTextField;
-    private JTextField estadoTextField;
+    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String fechaActualStr = fechaActual.format(formatoFecha);
 
     public registroTareaDometicas() {
+        pintarFrame();
+    }
+
+    public registroTareaDometicas(Tarea tarea) {
+        pintarFrame();
+        nombreTextField.setText(tarea.getNombre());
+        descripcionTextField.setText(tarea.getDescripcion());
+        fechaTextField.setText(tarea.getFecha());
+
+    }
+
+    private void pintarFrame(){
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Gestor de Tareas Domésticas");
         this.setLayout(null);
@@ -30,9 +43,6 @@ public class registroTareaDometicas extends JFrame {
         this.setContentPane(panelPricipal());
         this.setVisible(true);
     }
-
-    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    String fechaActualStr = fechaActual.format(formatoFecha);
 
     private JPanel panelPricipal() {
         JPanel panel = new JPanel();
@@ -54,7 +64,6 @@ public class registroTareaDometicas extends JFrame {
         fechaTextField = new JTextField(fechaActualStr);
         fechaTextField.setBounds(130, 110, 100, 30);
         panel.add(fechaTextField);
-
 
         JLabel nombre = texto("Nombre:");
         nombre.setBounds(25, 10, 100, 330);
@@ -129,7 +138,6 @@ public class registroTareaDometicas extends JFrame {
         });
     }
 
-
     private void OpcionAgregar() {
         // Obtener los datos del formulario
         String descripcion = descripcionTextField.getText();
@@ -147,9 +155,9 @@ public class registroTareaDometicas extends JFrame {
         // Enviar la tarea al servidor utilizando TareaRetrofit (suponiendo que TareaRetrofit es una clase válida para hacer solicitudes HTTP)
         TareaRetrofit tareaRetrofit = new TareaRetrofit();
 
-        if (tareaRetrofit.enviarTarea(nuevaTarea)){
+        if (tareaRetrofit.enviarTarea(nuevaTarea)) {
             System.out.println("enviado");
-        }else{
+        } else {
             System.out.println("no enviado");
         }
 
