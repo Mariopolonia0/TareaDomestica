@@ -45,4 +45,14 @@ public class TareaRetrofit {
         }
         return listo;
     }
+
+    public boolean actualizarTarea(Tarea tarea) {
+        boolean listo = false;
+        try {
+            listo = SERVICE.actualizarTarea(tarea.getTareaId(),tarea).execute().isSuccessful();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return listo;
+    }
 }
