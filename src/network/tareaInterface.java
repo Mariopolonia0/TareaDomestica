@@ -15,7 +15,7 @@ public interface tareaInterface {
     Call<Void> enviarTarea(@Body Tarea tarea);
 
     @PUT("api/Tareas/{id}")
-    Call<Void> actualizarTarea(@Path("id")int id, @Body Tarea tarea);
+    Call<Void> actualizarTarea(@Path("id") int id, @Body Tarea tarea);
 
 
 }

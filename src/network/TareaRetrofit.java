@@ -27,7 +27,8 @@ public class TareaRetrofit {
     }
 
     public List<Tarea> listaCitas() {
-        List<Tarea> citas = new ArrayList<>() { };
+        List<Tarea> citas = new ArrayList<>() {
+        };
         try {
             citas = SERVICE.getTodasTareas().execute().body();
         } catch (Exception ex) {
@@ -36,6 +37,7 @@ public class TareaRetrofit {
 
         return citas;
     }
+
     public boolean enviarTarea(Tarea tarea) {
         boolean listo = false;
         try {
@@ -49,7 +51,7 @@ public class TareaRetrofit {
     public boolean actualizarTarea(Tarea tarea) {
         boolean listo = false;
         try {
-            listo = SERVICE.actualizarTarea(tarea.getTareaId(),tarea).execute().isSuccessful();
+            listo = SERVICE.actualizarTarea(tarea.getTareaId(), tarea).execute().isSuccessful();
         } catch (Exception ex) {
             System.out.println(ex);
         }

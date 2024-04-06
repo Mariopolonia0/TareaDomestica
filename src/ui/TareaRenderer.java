@@ -5,8 +5,6 @@ import data.Tarea;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class TareaRenderer extends JPanel implements ListCellRenderer<Tarea> {
 
@@ -23,10 +21,6 @@ public class TareaRenderer extends JPanel implements ListCellRenderer<Tarea> {
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new BorderLayout(5, 5));
 
-
-        panelMain.setBackground(Color.GREEN);
-        panelLeft.setBackground(Color.GREEN);
-        panelRigth.setBackground(Color.GREEN);
 
         panelLeft.add(descripcionLabel);
         panelLeft.add(nameLabel);
@@ -59,19 +53,33 @@ public class TareaRenderer extends JPanel implements ListCellRenderer<Tarea> {
         estadoLabel.setText(tarea.getEstado());
         estadoLabel.setBorder(new EmptyBorder(5, 5, 0, 10));
 
-        panelRigth.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent me) {
-                editar(tarea);
-            }
-        });
+        switch (tarea.getEstado()) {
+            case "Por Hacer" -> {
+                Color color =  new Color(0xFFFF5959, true);
 
+                panelMain.setBackground(color);
+                panelLeft.setBackground(color);
+                panelRigth.setBackground(color);
+                break;
+            }
+
+            case "En Proceso" -> {
+                Color color =  new Color(0xFFFFF02E, true);
+                panelMain.setBackground(color);
+                panelLeft.setBackground(color);
+                panelRigth.setBackground(color);
+                break;
+            }
+
+            case "Terminada" -> {
+                panelMain.setBackground(Color.GREEN);
+                panelLeft.setBackground(Color.GREEN);
+                panelRigth.setBackground(Color.GREEN);
+                break;
+            }
+        }
 
         return this;
     }
 
-    public void editar(Tarea tarea) {
-        registroTareaDometicas registroTareaDometicas = new registroTareaDometicas(tarea);
-
-    }
 }
